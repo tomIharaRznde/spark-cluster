@@ -21,12 +21,12 @@ RUN wget https://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.tgz && \
 	ln -s /usr/lib/scala-2.11.8 /usr/lib/scala
 
 # Install Spark
-RUN wget http://ftp.unicamp.br/pub/apache/spark/spark-2.4.6/spark-2.4.6-bin-hadoop2.7.tgz && \
-	tar xf spark-2.4.6-bin-hadoop2.7.tgz && \
+RUN wget https://downloads.apache.org/spark/spark-3.0.0/spark-3.0.0-bin-hadoop2.7.tgz && \
+	tar xf spark-3.0.0-bin-hadoop2.7.tgz && \
 	mkdir /usr/local/spark && \
-	cp -r spark-2.4.6-bin-hadoop2.7/* /usr/local/spark && \
-	rm -Rf spark-2.4.6-bin-hadoop2.7 && \
-	rm -Rf spark-2.4.6-bin-hadoop2.7.tgz
+	cp -r spark-3.0.0-bin-hadoop2.7/* /usr/local/spark && \
+	rm -Rf spark-3.0.0-bin-hadoop2.7 && \
+	rm -Rf spark-3.0.0-bin-hadoop2.7.tgz
 
 # Copy Spark start command
 COPY start-spark.sh /usr/local/spark/start-spark.sh
@@ -47,7 +47,7 @@ RUN adduser spark && \
 USER spark
 
 RUN export PATH=$PATH:/usr/lib/scala/bin && \
-	export SPARK_EXAMPLES_JAR=/usr/local/spark/examples/jars/spark-examples_2.11-2.4.6.jar && \
+	export SPARK_EXAMPLES_JAR=/usr/local/spark/examples/jars/spark-examples_2.11-3.0.0.jar && \
         export PATH=$PATH:$HOME/bin:/usr/local/spark/sbin:/usr/local/spark/bin && \
         source ~/.bash_profile
 
